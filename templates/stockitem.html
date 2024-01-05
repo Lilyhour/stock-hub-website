@@ -1,0 +1,20 @@
+<div class="border-bottom row" style="margin-bottom:16px; padding-bottom:8px">
+  <div class="col-9">
+    <h4 
+      style="color:rgb(90,90,90); margin-bottom:4px;">
+      {{ stock['name'] }}
+    </h4>
+    <div>
+      <b>Quantity: </b> {{stock['quantity']}}
+    </div>
+    {% if 'id' in stock %}
+    <div>
+      <b>ID: </b> {{stock['id']}}
+    </div>
+    {% endif %}
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-outline-primary">Detail</button>
+  </div>
+  
+</div>
