@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify ,request, redirect, url_for
+
 
 app = Flask(__name__)
 
@@ -64,6 +65,7 @@ stock_list = [
       "price": 2.75
     },
 ]
+users = {}
 
 
 @app.route("/")
@@ -76,6 +78,40 @@ def hello_stock_hub():
 @app.route("/api/stocks")
 def list_stocks():
   return jsonify(stock_list)
-  
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if username in users and users[username] == password:
+            # Successful login, redirect to home
+            return redirect(url_for('home'))
+        else:
+            # Invalid credentials, show login page with error message
+            return render_template('login.html', error='Invalid username or password')
+
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # Check if the username is already taken
+        if username in users:
+            return render_template('register.html', error='Username already taken')
+
+        # Register the user (in-memory, in a real app, you would store this in a database)
+        users[username] = password
+
+        # Redirect to login page after successful registration
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
 if __name__ == '__main__': 
   app.run(host='0.0.0.0', debug=True)
