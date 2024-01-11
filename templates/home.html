@@ -13,21 +13,20 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center mt-4 mb-4">{{company_name}} Management</h1>
-        <h2 class="text-center">About Stock-Hub</h2>
-        <p class="lead">Welcome to Stock-Hub, the stock market tracker.</p>
+        <h1 class="text-center mt-4 mb-4">{{company_name}}</h1>
+        <p class="text-center">Welcome To Stock-Hub </p>
         <div class="text-center">
-            <img class="img-fluid w-50" id="banner" src="{{ url_for('static', filename='warehouse.png') }}"
+            <img class="img-fluid w-25" id="banner" src="{{ url_for('static', filename='warehouse.png') }}"
                 alt="Warehouse">
         </div>
 
         <div>
-            <h2 class="text-center mt-2 mb-4">Check Stock</h2>
+            <!-- <h2 class="text-center mt-2 mb-4">Check Stock</h2>
             <div>
                 {% for stock in stocks %}
                 {% include 'stockitem.html' %}
                 {% endfor %}
-            </div>
+            </div> -->
             <div class="text-center mt-4">
                 <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mx-2">Login</a>
                 <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg mx-2">Register</a>
